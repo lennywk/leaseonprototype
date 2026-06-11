@@ -27,7 +27,7 @@ const Inquiry = () => {
 
   const [form, setForm] = useState({
     firstName: "", lastName: "", email: "", phone: "",
-    companyName: "", dba: "",
+    companyName: "", dba: "", fein: "",
     merchandiseCategory: "", businessDescription: "",
     leaseStartDate: "", leaseEndDate: "",
     termsAccepted: false,
@@ -222,6 +222,10 @@ const Inquiry = () => {
                         </SelectContent>
                       </Select>
                       {errors.merchandiseCategory && <p className="text-xs text-destructive mt-1">{errors.merchandiseCategory}</p>}
+                    </div>
+                    <div>
+                      <Label htmlFor="fein" className="font-body">FEIN</Label>
+                      <Input id="fein" value={form.fein} onChange={e => update("fein", e.target.value)} placeholder="XX-XXXXXXX" />
                     </div>
                     <div className="sm:col-span-2">
                       <Label htmlFor="businessDescription" className="font-body">Describe your business</Label>
