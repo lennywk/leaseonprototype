@@ -53,7 +53,7 @@ const UnitDetail = () => {
           {/* Key info */}
           <div className="flex flex-col justify-between">
             <div>
-              <Badge className="bg-primary text-primary-foreground mb-3">{unit.unitType}</Badge>
+              <Badge className="bg-primary text-primary-foreground mb-3 rounded-[3px]">{unit.unitType}</Badge>
               <p className="text-sm text-muted-foreground font-body mb-1">{unit.property}</p>
               <h1 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">{unit.name}</h1>
               <div className="flex items-center gap-1 text-muted-foreground text-sm mb-6">
@@ -61,9 +61,9 @@ const UnitDetail = () => {
                 <span className="font-body">{unit.address}, {unit.city}, {unit.state} {unit.zip}</span>
               </div>
 
-              <div className="bg-secondary rounded-lg p-5 mb-6">
+              <div className="border border-[#f4ead5] rounded-lg p-5 mb-6">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground font-body mb-1">Estimated monthly rent</p>
-                <p className="font-display text-2xl font-bold text-foreground">
+                <p className="font-display text-2xl font-bold text-primary">
                   {getPriceLabel(unit.unitType)}
                 </p>
                 <p className="text-xs text-muted-foreground font-body mt-2">
@@ -73,17 +73,17 @@ const UnitDetail = () => {
 
               {/* Quick stats */}
               <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="text-center p-3 bg-muted rounded-lg">
+                <div className="text-center p-3 bg-[#edf7f4] rounded-lg">
                   <Maximize2 className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <p className="text-sm font-semibold text-foreground">{unit.sqft.toLocaleString()} sq ft</p>
                   <p className="text-xs text-muted-foreground">Size</p>
                 </div>
-                <div className="text-center p-3 bg-muted rounded-lg">
+                <div className="text-center p-3 bg-[#edf7f4] rounded-lg">
                   <Building2 className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <p className="text-sm font-semibold text-foreground">{unit.level}</p>
                   <p className="text-xs text-muted-foreground">Location</p>
                 </div>
-                <div className="text-center p-3 bg-muted rounded-lg">
+                <div className="text-center p-3 bg-[#edf7f4] rounded-lg">
                   <Users className="w-5 h-5 mx-auto mb-1 text-primary" />
                   <p className="text-sm font-semibold text-foreground">{unit.totalRetailers}</p>
                   <p className="text-xs text-muted-foreground">Retailers</p>
@@ -92,8 +92,8 @@ const UnitDetail = () => {
             </div>
 
             <Link to={`/inquiry/${unit.id}`}>
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold text-base py-6">
-                Apply Now <ArrowRight className="w-4 h-4 ml-2" />
+              <Button className="w-full bg-[#4C8577] text-white hover:bg-[#4C8577]/90 font-body font-semibold text-base py-6">
+                Apply Now
               </Button>
             </Link>
           </div>
@@ -111,7 +111,7 @@ const UnitDetail = () => {
             <ul className="space-y-3">
               {unit.features.map(f => (
                 <li key={f} className="flex items-start gap-2 text-sm font-body text-foreground">
-                  <CheckCircle2 className="w-4 h-4 mt-0.5 text-success flex-shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 mt-0.5 text-[#99c1ba] flex-shrink-0" />
                   {f}
                 </li>
               ))}
@@ -145,7 +145,7 @@ const UnitDetail = () => {
             Submit an inquiry to receive a detailed lease proposal with personalized pricing.
           </p>
           <Link to={`/inquiry/${unit.id}`}>
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold px-8 py-5">
+            <Button className="bg-[#4C8577] text-white hover:bg-[#4C8577]/90 font-body font-semibold px-8 py-5">
               Apply Now
             </Button>
           </Link>

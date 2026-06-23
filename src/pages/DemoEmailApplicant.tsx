@@ -121,7 +121,7 @@ const DemoEmailApplicant = () => {
 
                   <div className="flex justify-between font-semibold text-base">
                     <span className="text-foreground">Total Estimate</span>
-                    <span className="text-accent">${totalEstimate.toLocaleString()}</span>
+                    <span className="text-primary">${totalEstimate.toLocaleString()}</span>
                   </div>
                 </div>
               </div>

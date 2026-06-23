@@ -101,53 +101,56 @@ const Landing = () => {
               </button>
             )}
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 [&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
             <Select value={stateFilter} onValueChange={setStateFilter}>
               <SelectTrigger><SelectValue placeholder="State" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 <SelectItem value="all">All States</SelectItem>
                 {states.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={cityFilter} onValueChange={setCityFilter}>
               <SelectTrigger><SelectValue placeholder="City" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 <SelectItem value="all">All Cities</SelectItem>
                 {cities.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={propertyFilter} onValueChange={setPropertyFilter}>
               <SelectTrigger><SelectValue placeholder="Property" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 <SelectItem value="all">All Properties</SelectItem>
                 {properties.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={typeFilter} onValueChange={setTypeFilter}>
               <SelectTrigger><SelectValue placeholder="Unit Type" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 <SelectItem value="all">All Types</SelectItem>
                 {unitTypes.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={priceFilter} onValueChange={setPriceFilter}>
               <SelectTrigger><SelectValue placeholder="Price" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 {PRICE_FILTER_RANGES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
               </SelectContent>
             </Select>
             <Select value={sqftFilter} onValueChange={setSqftFilter}>
               <SelectTrigger><SelectValue placeholder="Square Footage" /></SelectTrigger>
-              <SelectContent>
+              <SelectContent className="[&_[role=option]]:focus:!bg-[#f4ead5] [&_[role=option]]:focus:!text-foreground [&_[role=option]]:data-[highlighted]:!bg-[#f4ead5] [&_[role=option]]:data-[highlighted]:!text-foreground">
                 {SQFT_RANGES.map(r => <SelectItem key={r.value} value={r.value}>{r.label}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
+
         </div>
       </section>
 
       {/* Results */}
-      <section className="container-page py-10 flex-1">
+      <section className="flex-1 bg-[#fdfbf8]">
+        <div className="container-page py-10">
+
         <p className="text-sm text-muted-foreground mb-6 font-body">
           {filtered.length} space{filtered.length !== 1 ? "s" : ""} available
         </p>
@@ -162,7 +165,9 @@ const Landing = () => {
             ))}
           </div>
         )}
+        </div>
       </section>
+
 
       <SiteFooter />
       <CompareBar />

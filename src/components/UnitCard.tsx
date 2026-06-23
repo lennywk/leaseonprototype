@@ -28,9 +28,10 @@ const UnitCard = ({ unit }: UnitCardProps) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs">
+        <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs rounded-[3px]">
           {unit.unitType}
         </Badge>
+
         <div
           className="absolute top-3 right-3"
           onClick={(e) => {
@@ -54,7 +55,7 @@ const UnitCard = ({ unit }: UnitCardProps) => {
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-body">
               Starting at
             </span>
-            <span className="text-sm font-bold text-accent font-body">
+            <span className="text-sm font-bold text-primary font-body">
               ${startingPrice.toLocaleString()}/mo
             </span>
             <span className="text-[10px] italic text-muted-foreground font-body mt-0.5">
@@ -78,17 +79,19 @@ const UnitCard = ({ unit }: UnitCardProps) => {
           </span>
         </div>
         <div className="mt-3 flex items-center justify-between">
-          <p className="text-xs text-info font-medium">View space details →</p>
-          <span
-            className="text-xs font-semibold text-accent hover:underline"
+          <p className="text-xs font-medium text-[#52595f]">View space details →</p>
+          <button
+            type="button"
+            className="text-xs font-semibold text-[#4C8577] border border-[#4C8577] px-3 py-1.5 text-center hover:bg-[#4C8577] hover:text-white transition-colors"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               window.location.href = `/inquiry/${unit.id}`;
             }}
           >
-            Apply now →
-          </span>
+            Apply now
+          </button>
+
         </div>
       </div>
     </Link>

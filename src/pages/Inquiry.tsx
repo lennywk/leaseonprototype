@@ -29,7 +29,7 @@ const Inquiry = () => {
     firstName: "", lastName: "", email: "", phone: "",
     companyName: "", dba: "", fein: "",
     merchandiseCategory: "", businessDescription: "",
-    leaseStartDate: "", leaseEndDate: "",
+    termMonths: "",
     termsAccepted: false,
     // Page 2 optional fields
     estimatedSales: "", sqFtNeeded: "", existingLocationsCount: "",
@@ -63,9 +63,8 @@ const Inquiry = () => {
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Valid email required";
     if (!form.phone.trim()) e.phone = "Required";
     if (!form.companyName.trim()) e.companyName = "Required";
-    if (!form.merchandiseCategory) e.merchandiseCategory = "Required";
-    if (!form.leaseStartDate) e.leaseStartDate = "Required";
-    if (!form.leaseEndDate) e.leaseEndDate = "Required";
+    const m = parseInt(form.termMonths, 10);
+    if (!form.termMonths || isNaN(m) || m < 1 || m > 120) e.termMonths = "Enter a value between 1 and 120";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -87,9 +86,7 @@ const Inquiry = () => {
     e.preventDefault();
     if (!validatePage2()) return;
 
-    const start = new Date(form.leaseStartDate);
-    const end = new Date(form.leaseEndDate);
-    const months = Math.max(1, Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30)));
+    const months = Math.max(1, Math.min(120, parseInt(form.termMonths, 10) || 1));
 
     const submissionData = {
       ...form,
@@ -137,9 +134,10 @@ const Inquiry = () => {
           <div className="bg-secondary rounded-lg p-5 mb-8 flex flex-col sm:flex-row gap-4">
             <img src={unit.image} alt={unit.name} className="w-full sm:w-32 h-24 object-cover rounded-md" />
             <div className="flex-1">
-              <h2 className="font-display text-lg font-semibold">{unit.name} · {unit.property}</h2>
+              <h2 className="font-display text-lg font-semibold">{unit.name}</h2>
+              <p className="font-body text-sm text-foreground">{unit.property}</p>
               <p className="text-sm text-muted-foreground font-body">{unit.unitType} · {unit.sqft.toLocaleString()} sq ft · {unit.level}</p>
-              <p className="text-sm font-semibold text-accent font-body mt-1">
+              <p className="text-sm font-semibold text-primary font-body mt-1">
                 {getPriceLabel(unit.unitType)}
               </p>
             </div>
@@ -155,20 +153,23 @@ const Inquiry = () => {
               </div>
 
               <div className="space-y-8">
-                {/* Lease Dates */}
+                {/* Desired Term */}
                 <section>
-                  <h3 className="font-display text-lg font-semibold mb-1">Lease Dates</h3>
-                  <p className="text-xs text-muted-foreground font-body mb-4">Minimum 1 month · Maximum 24 months</p>
+                  <h3 className="font-display text-lg font-semibold mb-1">Desired Term</h3>
+                  <p className="text-xs text-muted-foreground font-body mb-4">Minimum 1 month · Maximum 120 months</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="leaseStartDate" className="font-body">Start Date *</Label>
-                      <Input id="leaseStartDate" type="date" value={form.leaseStartDate} onChange={e => update("leaseStartDate", e.target.value)} />
-                      {errors.leaseStartDate && <p className="text-xs text-destructive mt-1">{errors.leaseStartDate}</p>}
-                    </div>
-                    <div>
-                      <Label htmlFor="leaseEndDate" className="font-body">End Date *</Label>
-                      <Input id="leaseEndDate" type="date" value={form.leaseEndDate} onChange={e => update("leaseEndDate", e.target.value)} />
-                      {errors.leaseEndDate && <p className="text-xs text-destructive mt-1">{errors.leaseEndDate}</p>}
+                      <Label htmlFor="termMonths" className="font-body"># of months *</Label>
+                      <Input
+                        id="termMonths"
+                        type="number"
+                        min={1}
+                        max={120}
+                        value={form.termMonths}
+                        onChange={e => update("termMonths", e.target.value)}
+                        placeholder="e.g. 12"
+                      />
+                      {errors.termMonths && <p className="text-xs text-destructive mt-1">{errors.termMonths}</p>}
                     </div>
                   </div>
                 </section>
@@ -214,7 +215,7 @@ const Inquiry = () => {
                       <Input id="dba" value={form.dba} onChange={e => update("dba", e.target.value)} />
                     </div>
                     <div>
-                      <Label className="font-body">Merchandise Category *</Label>
+                      <Label className="font-body">Merchandise Category</Label>
                       <Select value={form.merchandiseCategory} onValueChange={v => update("merchandiseCategory", v)}>
                         <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
                         <SelectContent>
@@ -236,14 +237,14 @@ const Inquiry = () => {
 
 
                 <div className="flex gap-4">
+                  <Link to={`/unit/${unit.id}`}>
+                    <Button type="button" variant="outline" className="font-body py-5">
+                      Back
+                    </Button>
+                  </Link>
                   <Button type="button" onClick={handleNext} className="bg-accent text-accent-foreground hover:bg-accent/90 font-body font-semibold px-8 py-5">
                     Next
                   </Button>
-                  <Link to={`/unit/${unit.id}`}>
-                    <Button type="button" variant="outline" className="font-body py-5">
-                      Go Back
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </>

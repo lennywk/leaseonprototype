@@ -45,7 +45,7 @@ const Compare = () => {
     { label: "Level", render: (u) => u.level },
     {
       label: "Price",
-      render: (u) => getPriceLabel(u.unitType),
+      render: (u) => <span className="text-primary font-semibold">{getPriceLabel(u.unitType)}</span>,
     },
     {
       label: "Available",
