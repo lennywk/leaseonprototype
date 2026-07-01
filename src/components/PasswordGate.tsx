@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
@@ -6,15 +6,19 @@ import { Lock } from "lucide-react";
 const PASSWORD = "tnv2hM7oL7un52";
 
 interface PasswordGateProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const PasswordGate = ({ children }: PasswordGateProps) => {
-  const [authenticated, setAuthenticated] = useState(() => {
-    return sessionStorage.getItem("ggp-auth") === "true";
-  });
+  const [authenticated, setAuthenticated] = useState(false);
+  const [ready, setReady] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setAuthenticated(sessionStorage.getItem("ggp-auth") === "true");
+    setReady(true);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +30,7 @@ const PasswordGate = ({ children }: PasswordGateProps) => {
     }
   };
 
+  if (!ready) return null;
   if (authenticated) return <>{children}</>;
 
   return (
@@ -43,7 +48,7 @@ const PasswordGate = ({ children }: PasswordGateProps) => {
             type="password"
             placeholder="Password"
             value={password}
-            onChange={e => { setPassword(e.target.value); setError(false); }}
+            onChange={(e) => { setPassword(e.target.value); setError(false); }}
             className={error ? "border-destructive" : ""}
           />
           {error && <p className="text-xs text-destructive">Incorrect password</p>}

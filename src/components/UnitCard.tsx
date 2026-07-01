@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-import { MapPin, Maximize2, Tag } from "lucide-react";
-import { Unit, STARTING_PRICES } from "@/data/units";
+import { Link } from "@tanstack/react-router";
+import { MapPin } from "lucide-react";
+import { ExpandDiagonal, EscalatorPerson } from "@/components/BrandIcons";
+import { STARTING_PRICES, type Unit } from "@/data/units";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useCompare } from "@/context/CompareContext";
@@ -16,8 +17,9 @@ const UnitCard = ({ unit }: UnitCardProps) => {
 
   return (
     <Link
-      to={`/unit/${unit.id}`}
-      className={`group block bg-card rounded-lg overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+      to="/unit/$id"
+      params={{ id: unit.id }}
+      className={`group block bg-card rounded-lg overflow-hidden border ${
         selected ? "border-accent ring-2 ring-accent/30" : "border-border"
       }`}
     >
@@ -25,7 +27,7 @@ const UnitCard = ({ unit }: UnitCardProps) => {
         <img
           src={unit.image}
           alt={`${unit.name} at ${unit.property}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover"
           loading="lazy"
         />
         <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs rounded-[3px]">
@@ -48,7 +50,7 @@ const UnitCard = ({ unit }: UnitCardProps) => {
       </div>
       <div className="p-5">
         <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+          <h3 className="font-display text-lg font-semibold text-foreground">
             {unit.name}
           </h3>
           <div className="flex flex-col items-end leading-tight whitespace-nowrap">
@@ -70,11 +72,11 @@ const UnitCard = ({ unit }: UnitCardProps) => {
         </div>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
-            <Maximize2 className="w-3 h-3" />
+            <ExpandDiagonal className="w-3 h-3" />
             {unit.sqft.toLocaleString()} sq ft
           </span>
           <span className="flex items-center gap-1">
-            <Tag className="w-3 h-3" />
+            <EscalatorPerson className="w-3 h-3" />
             {unit.level}
           </span>
         </div>
@@ -82,7 +84,7 @@ const UnitCard = ({ unit }: UnitCardProps) => {
           <p className="text-xs font-medium text-[#52595f]">View space details →</p>
           <button
             type="button"
-            className="text-xs font-semibold text-[#4C8577] border border-[#4C8577] px-3 py-1.5 text-center hover:bg-[#4C8577] hover:text-white transition-colors"
+            className="text-xs font-semibold text-[#234F46] border border-[#234F46] rounded-[3px] px-3 py-1.5 bg-transparent hover:bg-[#234F46] hover:text-white transition-colors"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();

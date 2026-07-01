@@ -1,5 +1,5 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
-import { toast } from "@/components/ui/sonner";
+import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+import { toast } from "sonner";
 
 interface CompareContextType {
   selectedIds: string[];

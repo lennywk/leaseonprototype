@@ -1,0 +1,219 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: "Galtino";
+  src: url("/__l5e/assets-v1/82a1930b-9ea9-42df-9ddd-4aaebc9ecf47/galtino-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Galtino";
+  src: url("/__l5e/assets-v1/2bfbbedc-51ab-4cf3-abd1-72879107e769/galtino-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Galtino";
+  src: url("/__l5e/assets-v1/a38d904d-7e0c-4ae8-8887-764a4a1fc270/galtino-semi-bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Galtino";
+  src: url("/__l5e/assets-v1/d07f0698-43b3-4c31-a4fe-e37ea453c896/galtino-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular";
+  src: url("/__l5e/assets-v1/3e52c936-bf31-4222-8427-0e54f97b86a9/degular-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Degular";
+  src: url("/__l5e/assets-v1/60fc06e9-bcaa-4502-9fc3-8296aa4a3d9d/degular-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Degular";
+  src: url("/__l5e/assets-v1/e0c91cc0-b660-48c5-8ce1-9bc519368cf3/degular-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Degular";
+  src: url("/__l5e/assets-v1/bac4011b-fbc0-4682-9091-efc1d8fa5c6b/degular-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Leaseon design system.
+ * HSL tokens (space-separated triplets) used with hsl(var(--token)) via Tailwind v4 @theme inline.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-ring-offset-background: hsl(var(--background));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-display: "Galtino", "Playfair Display", ui-serif, Georgia, serif;
+  --font-body: "Degular", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Degular", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --background: 40 20% 98%;
+  --foreground: 160 20% 15%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 160 20% 15%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 160 20% 15%;
+
+  --primary: 155 35% 24%;
+  --primary-foreground: 40 20% 98%;
+
+  --secondary: 40 30% 95%;
+  --secondary-foreground: 160 20% 15%;
+
+  --muted: 40 15% 93%;
+  --muted-foreground: 160 10% 45%;
+
+  --accent: 35 80% 55%;
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 40 15% 88%;
+  --input: 40 15% 88%;
+  --ring: 155 35% 24%;
+
+  --radius: 0rem;
+
+  --success: 152 60% 40%;
+  --success-foreground: 0 0% 100%;
+  --warning: 35 90% 55%;
+  --warning-foreground: 0 0% 100%;
+  --info: 210 60% 50%;
+  --info-foreground: 0 0% 100%;
+
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+.dark {
+  --background: 160 20% 8%;
+  --foreground: 40 20% 95%;
+  --card: 160 15% 12%;
+  --card-foreground: 40 20% 95%;
+  --popover: 160 15% 12%;
+  --popover-foreground: 40 20% 95%;
+  --primary: 155 40% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 160 15% 18%;
+  --secondary-foreground: 40 20% 95%;
+  --muted: 160 10% 20%;
+  --muted-foreground: 40 10% 60%;
+  --accent: 35 80% 55%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 160 10% 22%;
+  --input: 160 10% 22%;
+  --ring: 155 40% 45%;
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .font-display {
+    font-weight: 400 !important;
+  }
+}
+
+@utility container-page {
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}
